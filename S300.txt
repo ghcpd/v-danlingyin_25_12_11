@@ -1,0 +1,108 @@
+oswe-mini-m22a5s330::
+
+User: prompt
+You are a senior JavaScript/TypeScript quality engineer.
+Your task is to perform a Test Coverage Audit on the provided input.ts file.
+This task focuses ONLY on “Task / Maintenance → Test coverage”.
+--------------------------------------------------------------------------------
+Your responsibilities:
+1.Identify missing test coverage
+- Scan input.ts
+- List all functions, branches, and fallback paths that do NOT have any test coverage.
+- Output must include:
+
+- function name
+- line numbers
+- which branches/conditions are untested
+- why the code requires test coverage
+2.Produce a test coverage report (coverage.json)
+Use this exact structure:
+{
+    "summary": {
+    "total_functions": 0,
+    "untested_functions": 0,
+    "branches_missing_tests": 0
+    },
+    "details": [
+        {
+        "id": 1,
+        "function": "exampleFunction",
+        "line_numbers": [1,5],
+        "missing_coverage_reason": "",
+        "missing_branches": ["error path", "fallback return"]
+        }
+    ]
+}
+
+--------------------------------------------------------------------------------
+3.Generate a minimal test suite (Jest or vitest)
+- Create a tests/ folder
+- Create input.test.ts
+- Add minimal but valid TypeScript tests that:
+
+- cover each missing function
+- cover each fallback/error branch
+- Tests must be executable (“npm test”).
+--------------------------------------------------------------------------------
+4.Generate an updated README.md
+Must include:
+- How to run tests
+- What coverage gaps were identified
+- Why tests were added
+- Expected output (PASS / FAIL)
+--------------------------------------------------------------------------------
+Rules:
+- MUST NOT invent functions that do not exist
+- MUST NOT hallucinate test coverage
+- MUST list exact line numbers
+- MUST keep output short, precise, traceable
+- MUST NOT create security tasks (this prompt is only for Test Coverage)
+
+GitHub Copilot: Read [](file:///c%3A/Users/v-danlingyin/Documents/microsoft_projects_files/bugBash/1211/oswe-mini-m22a5s330/input.ts)
+
+Created [](file:///c%3A/Users/v-danlingyin/Documents/microsoft_projects_files/bugBash/1211/oswe-mini-m22a5s330/tests/input.test.ts)
+
+Created [](file:///c%3A/Users/v-danlingyin/Documents/microsoft_projects_files/bugBash/1211/oswe-mini-m22a5s330/package.json)
+
+Created [](file:///c%3A/Users/v-danlingyin/Documents/microsoft_projects_files/bugBash/1211/oswe-mini-m22a5s330/tsconfig.json)
+
+Created [](file:///c%3A/Users/v-danlingyin/Documents/microsoft_projects_files/bugBash/1211/oswe-mini-m22a5s330/coverage.json)
+
+Created [](file:///c%3A/Users/v-danlingyin/Documents/microsoft_projects_files/bugBash/1211/oswe-mini-m22a5s330/README.md)
+
+GitHub Copilot — Test Coverage Audit (short)
+
+Summary of missing coverage found in input.ts
+1) Function: getUserRole
+   - Lines: 3–11
+   - Untested branches/conditions:
+     - user undefined (fallback return "guest")
+     - user.role undefined (fallback return "unknown")
+     - role present (normal return user.role)
+   - Why tests required: Fallback and normal return paths must be asserted to avoid regressions in authorization logic.
+
+2) Function: calculateDiscount
+   - Lines: 13–26
+   - Untested branches/conditions:
+     - price < 0 (error branch — throws)
+     - level === "gold"
+     - level === "silver"
+     - default (fallback return price)
+   - Why tests required: Both error handling and each switch branch must be validated to guarantee correct business math and error signalling.
+
+Files I added
+- coverage.json — audit report (structure you requested; shows total_functions:2, untested_functions:2, branches_missing_tests:7).
+- input.test.ts — minimal Jest tests covering all missing branches/fallbacks.
+- package.json, tsconfig.json — minimal test config (Jest + ts-jest).
+- README.md — how to run tests, coverage gaps, why tests were added, expected output.
+
+How to run the tests
+1. npm install
+2. npm test
+
+Expected result
+- All tests should PASS (Jest summary like: PASS  tests/input.test.ts).
+
+If you want, I can run the tests here (npm install + npm test) and paste the output. Which would you prefer?
+
+Made changes.
