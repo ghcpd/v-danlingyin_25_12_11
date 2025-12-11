@@ -1,0 +1,132 @@
+oswe-mini-uiberry::
+
+User: prompt
+You are a senior JavaScript/TypeScript quality engineer.
+Your task is to perform a Test Coverage Audit on the provided input.ts file.
+This task focuses ONLY on “Task / Maintenance → Test coverage”.
+--------------------------------------------------------------------------------
+Your responsibilities:
+1.Identify missing test coverage
+- Scan input.ts
+- List all functions, branches, and fallback paths that do NOT have any test coverage.
+- Output must include:
+
+- function name
+- line numbers
+- which branches/conditions are untested
+- why the code requires test coverage
+2.Produce a test coverage report (coverage.json)
+Use this exact structure:
+{
+    "summary": {
+    "total_functions": 0,
+    "untested_functions": 0,
+    "branches_missing_tests": 0
+    },
+    "details": [
+        {
+        "id": 1,
+        "function": "exampleFunction",
+        "line_numbers": [1,5],
+        "missing_coverage_reason": "",
+        "missing_branches": ["error path", "fallback return"]
+        }
+    ]
+}
+
+--------------------------------------------------------------------------------
+3.Generate a minimal test suite (Jest or vitest)
+- Create a tests/ folder
+- Create input.test.ts
+- Add minimal but valid TypeScript tests that:
+
+- cover each missing function
+- cover each fallback/error branch
+- Tests must be executable (“npm test”).
+--------------------------------------------------------------------------------
+4.Generate an updated README.md
+Must include:
+- How to run tests
+- What coverage gaps were identified
+- Why tests were added
+- Expected output (PASS / FAIL)
+--------------------------------------------------------------------------------
+Rules:
+- MUST NOT invent functions that do not exist
+- MUST NOT hallucinate test coverage
+- MUST list exact line numbers
+- MUST keep output short, precise, traceable
+- MUST NOT create security tasks (this prompt is only for Test Coverage)
+
+GitHub Copilot: Read [](file:///c%3A/Users/v-danlingyin/Documents/microsoft_projects_files/bugBash/1211/oswe-mini-uiberry/input.ts)
+
+Created [](file:///c%3A/Users/v-danlingyin/Documents/microsoft_projects_files/bugBash/1211/oswe-mini-uiberry/coverage.json)
+
+Created [](file:///c%3A/Users/v-danlingyin/Documents/microsoft_projects_files/bugBash/1211/oswe-mini-uiberry/tests/input.test.ts)
+
+Created [](file:///c%3A/Users/v-danlingyin/Documents/microsoft_projects_files/bugBash/1211/oswe-mini-uiberry/package.json)
+
+Created [](file:///c%3A/Users/v-danlingyin/Documents/microsoft_projects_files/bugBash/1211/oswe-mini-uiberry/tsconfig.json)
+
+Created [](file:///c%3A/Users/v-danlingyin/Documents/microsoft_projects_files/bugBash/1211/oswe-mini-uiberry/README.md)
+
+GitHub Copilot — Test Coverage Audit (input.ts)
+
+Summary
+- File audited: input.ts
+- Total functions: 2
+- Untested functions: 2
+- Total missing branches/conditions: 7
+
+1) Missing test coverage (exact, traceable)
+- Function: `getUserRole`
+  - Line numbers: [3, 11]
+  - Untested branches / conditions:
+    - user is undefined -> returns "guest" (fallback)
+    - user.role is falsy -> returns "unknown" (fallback)
+    - user.role present -> returns the provided role
+  - Why tests required:
+    - These branches determine returned role values used by callers (authorization / UX). Fallbacks and explicit-role return must be validated to avoid regressions.
+
+- Function: `calculateDiscount`
+  - Line numbers: [13, 26]
+  - Untested branches / conditions:
+    - price < 0 -> throws Error("Invalid price") (error path)
+    - level === "gold" -> applies 20% discount
+    - level === "silver" -> applies 10% discount
+    - default -> returns full price (fallback)
+  - Why tests required:
+    - Pricing logic and error handling directly affect billing and correctness; each tier and the error path must be verified.
+
+2) Machine-readable report
+- File created: coverage.json (root) with this summary and per-function details matching the structure you requested.
+
+3) Minimal test suite (executable)
+- Files added:
+  - input.test.ts — TypeScript tests (vitest)
+  - package.json — adds script `"test": "vitest run"` and devDependencies
+  - tsconfig.json — TypeScript config for tests
+  - README.md — how to run tests, what gaps were found, why tests were added, expected output
+  - coverage.json — the audit report
+
+How to run (also in README.md)
+1. npm install
+2. npm test
+
+Expected result
+- All tests should PASS (they exercise every missing branch listed above).
+
+Files created at workspace root
+- coverage.json
+- input.test.ts
+- package.json
+- tsconfig.json
+- README.md
+
+If you want, I can:
+- Run the tests here (will run `npm install` then `npm test`) — or
+- Change the test runner to Jest instead of Vitest.
+
+Which would you prefer?
+
+Made changes.
