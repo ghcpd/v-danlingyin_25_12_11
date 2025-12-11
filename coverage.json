@@ -1,0 +1,32 @@
+{
+  "summary": {
+    "total_functions": 2,
+    "untested_functions": 2,
+    "branches_missing_tests": 7
+  },
+  "details": [
+    {
+      "id": 1,
+      "function": "getUserRole",
+      "line_numbers": [3, 11],
+      "missing_coverage_reason": "No tests for user undefined, user with no role, and user with a defined role. These branches control returned role values used by callers (authorization/UX).",
+      "missing_branches": [
+        "user is undefined -> returns \"guest\" (fallback)",
+        "user.role is falsy -> returns \"unknown\" (fallback)",
+        "user.role present -> returns the provided role"
+      ]
+    },
+    {
+      "id": 2,
+      "function": "calculateDiscount",
+      "line_numbers": [13, 26],
+      "missing_coverage_reason": "No tests for negative-price error path, the two discount tiers, and the default fallback. Pricing and error handling are critical to business correctness.",
+      "missing_branches": [
+        "price < 0 -> throws Error(\"Invalid price\") (error path)",
+        "level === \"gold\" -> applies 20% discount",
+        "level === \"silver\" -> applies 10% discount",
+        "default -> returns full price (fallback)"
+      ]
+    }
+  ]
+}
