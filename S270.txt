@@ -1,0 +1,157 @@
+oswe-mini-prime-s270::
+
+User: prompt
+You are a senior JavaScript/TypeScript quality engineer.
+Your task is to perform a Test Coverage Audit on the provided input.ts file.
+This task focuses ONLY on “Task / Maintenance → Test coverage”.
+--------------------------------------------------------------------------------
+Your responsibilities:
+1.Identify missing test coverage
+- Scan input.ts
+- List all functions, branches, and fallback paths that do NOT have any test coverage.
+- Output must include:
+
+- function name
+- line numbers
+- which branches/conditions are untested
+- why the code requires test coverage
+2.Produce a test coverage report (coverage.json)
+Use this exact structure:
+{
+    "summary": {
+    "total_functions": 0,
+    "untested_functions": 0,
+    "branches_missing_tests": 0
+    },
+    "details": [
+        {
+        "id": 1,
+        "function": "exampleFunction",
+        "line_numbers": [1,5],
+        "missing_coverage_reason": "",
+        "missing_branches": ["error path", "fallback return"]
+        }
+    ]
+}
+
+--------------------------------------------------------------------------------
+3.Generate a minimal test suite (Jest or vitest)
+- Create a tests/ folder
+- Create input.test.ts
+- Add minimal but valid TypeScript tests that:
+
+- cover each missing function
+- cover each fallback/error branch
+- Tests must be executable (“npm test”).
+--------------------------------------------------------------------------------
+4.Generate an updated README.md
+Must include:
+- How to run tests
+- What coverage gaps were identified
+- Why tests were added
+- Expected output (PASS / FAIL)
+--------------------------------------------------------------------------------
+Rules:
+- MUST NOT invent functions that do not exist
+- MUST NOT hallucinate test coverage
+- MUST list exact line numbers
+- MUST keep output short, precise, traceable
+- MUST NOT create security tasks (this prompt is only for Test Coverage)
+
+GitHub Copilot: I'll scan input.ts, identify uncovered functions/branches, then add a test suite, coverage report, and README.
+
+Created 4 todos
+
+I'll open input.ts to inspect functions and branches.
+
+Read [](file:///c%3A/Users/v-danlingyin/Documents/microsoft_projects_files/bugBash/1211/oswe-mini-prime-s270/input.ts)
+
+I'll add tests, package manifests, tsconfig, coverage.json, and README; then run tests.
+
+Using "Apply Patch"
+
+
+```
+
+```
+I'll add a minimal TypeScript config for vitest.
+
+Using "Apply Patch"
+
+
+```
+
+```
+Now I'll add a Jest-style test file using Vitest to cover all branches.
+
+Using "Apply Patch"
+
+
+```
+
+```
+Next I'll install dependencies and run the tests to verify they pass.
+
+Ran terminal command: npm install
+
+Using "Apply Patch"
+
+
+```
+
+```
+
+
+Using "Apply Patch"
+
+
+```
+
+```
+
+
+Completed: *Scan input.ts* (1/4)
+
+Installing dev dependencies and running the tests now.
+
+Ran terminal command: npm install
+
+Read [](file:///c%3A/Users/v-danlingyin/Documents/microsoft_projects_files/bugBash/1211/oswe-mini-prime-s270)
+
+Ran terminal command: npm test --silent
+
+Summary — Audit complete and tests added.
+
+- Files added:
+  - input.test.ts — tests for all branches
+  - coverage.json — audit report of missing coverage (initial state)
+  - README.md — run instructions and gap summary
+  - package.json, tsconfig.json — test setup
+
+Coverage gaps found (pre-tests)
+- getUserRole (lines 3–11)
+  - Untested branches: user undefined -> returns "guest" (lines 4–5); user.role missing -> returns "unknown" (7–8); user.role present -> returns role (10)
+  - Why test: ensures correct fallback behavior for missing inputs and valid role path
+- calculateDiscount (lines 13–26)
+  - Untested branches: price < 0 -> throws Error (14–15); level === "gold" -> 20% off (19–20); level === "silver" -> 10% off (21–22); default -> returns price (23–24)
+  - Why test: verifies error handling and correct discount logic across switch cases
+
+coverage.json (created)
+- summary.total_functions: 2
+- summary.untested_functions: 2
+- summary.branches_missing_tests: 7
+- details: per-function entries with exact line ranges and missing branches
+
+How to run tests
+- Install deps and run tests:
+  - npm install
+  - npm test
+- Expected result: Tests PASS when deps are installed.
+
+Notes / Next steps
+- I added minimal Vitest-based TypeScript tests that exercise every previously untested branch.
+- I couldn't run the test command in this environment (terminal was cancelled); if you want, I can run them here again or run them and fix any platform issues.
+
+If you'd like, I can now run the tests and report the exact pass/fail output.
+
+Made changes.
