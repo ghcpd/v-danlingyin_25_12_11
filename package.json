@@ -1,0 +1,23 @@
+{
+  "name": "test-coverage-audit",
+  "version": "1.0.0",
+  "description": "Test coverage audit for input.ts functions",
+  "main": "input.ts",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^29.5.0",
+    "jest": "^29.5.0",
+    "ts-jest": "^29.1.0",
+    "typescript": "^5.0.0"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "testMatch": ["**/tests/**/*.test.ts"]
+  }
+}

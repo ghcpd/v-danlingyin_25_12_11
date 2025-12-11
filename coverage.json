@@ -1,0 +1,32 @@
+{
+  "summary": {
+    "total_functions": 2,
+    "untested_functions": 2,
+    "branches_missing_tests": 7
+  },
+  "details": [
+    {
+      "id": 1,
+      "function": "getUserRole",
+      "line_numbers": [3, 10],
+      "missing_coverage_reason": "Function handles multiple fallback paths: undefined user, missing role property, and successful role extraction. Each branch must be tested to ensure correct behavior across different input scenarios.",
+      "missing_branches": [
+        "undefined user parameter (line 4-5)",
+        "user object without role property (line 7-8)",
+        "successful user.role return (line 10)"
+      ]
+    },
+    {
+      "id": 2,
+      "function": "calculateDiscount",
+      "line_numbers": [12, 26],
+      "missing_coverage_reason": "Function contains error handling and switch statement with multiple discount levels. All branches including error case and default fallback must be tested to verify correct discount calculations.",
+      "missing_branches": [
+        "negative price error (line 13-15)",
+        "gold tier discount (line 17-18)",
+        "silver tier discount (line 20-21)",
+        "default fallback return (line 23)"
+      ]
+    }
+  ]
+}
