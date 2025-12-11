@@ -1,0 +1,23 @@
+{
+    "summary": {
+        "total_functions": 2,
+        "untested_functions": 2,
+        "branches_missing_tests": 5
+    },
+    "details": [
+        {
+            "id": 1,
+            "function": "getUserRole",
+            "line_numbers": [3, 11],
+            "missing_coverage_reason": "Function has conditional branches for user existence and role presence that are not tested.",
+            "missing_branches": ["if (!user) return 'guest'", "if (!user.role) return 'unknown'", "return user.role"]
+        },
+        {
+            "id": 2,
+            "function": "calculateDiscount",
+            "line_numbers": [13, 26],
+            "missing_coverage_reason": "Function has error handling and switch cases that are not tested.",
+            "missing_branches": ["if (price < 0) throw error", "case 'gold'", "case 'silver'", "default return price"]
+        }
+    ]
+}
