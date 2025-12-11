@@ -1,0 +1,23 @@
+{
+  "summary": {
+    "total_functions": 2,
+    "untested_functions": 2,
+    "branches_missing_tests": 7
+  },
+  "details": [
+    {
+      "id": 1,
+      "function": "getUserRole",
+      "line_numbers": [3,11],
+      "missing_coverage_reason": "No tests exercise any of the input branches",
+      "missing_branches": ["user is undefined -> return 'guest'", "user.role missing -> return 'unknown'", "user.role present -> return role"]
+    },
+    {
+      "id": 2,
+      "function": "calculateDiscount",
+      "line_numbers": [13,26],
+      "missing_coverage_reason": "No tests exercise error and switch branches",
+      "missing_branches": ["price < 0 -> throw Error", "level === 'gold' -> 20% off", "level === 'silver' -> 10% off", "default -> return price"]
+    }
+  ]
+}
